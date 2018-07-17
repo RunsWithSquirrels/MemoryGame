@@ -45,9 +45,15 @@ function shuffle(array) {
 
 
  /* 
- * Restart Button: A restart button allows the player to reset the game board, the timer, & the start rating.
+ * Restart Button: A restart button allows the player to reset the game board, the timer, & the star rating.
  */
-
+const reset = document.querySelector('.restart');
+reset.addEventListener('click', function (event) {
+    event.preventDefault();
+    // Need to reset the timer back to 0
+    // Need to reset the star rating back to 3
+    shuffle; // Need to shuffle/reset the game board
+});
 
  /* 
  * Star Rating: The game displays a star rating (from 1 to at least 3) that reflects the player's performance. At the beginning of a game,
