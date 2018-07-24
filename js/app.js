@@ -41,6 +41,7 @@ var openCards = [];
 
 allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
+
         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
             openCards.push(card);
             card.classList.add('open', 'show');
@@ -52,9 +53,10 @@ allCards.forEach(function(card) {
                     });
                 
                     openCards = [];
-            }, 1000);
+                }, 1000);
+            }
         }
-    }
+    });
 });
 
  /* 
