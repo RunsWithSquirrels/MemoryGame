@@ -59,7 +59,7 @@ allCards.forEach(function(card) {
 
  /* 
  * Congratulations Popup: When a user wins the game a modal appears to congratulate the player & ask if they want to play again. It should also tell the user how much
- * time it took to win the game , & the star rating.
+ * time it took to win the game, & the star rating.
  */
 
 
