@@ -41,7 +41,12 @@ var openCards = [];
 
 allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
+        if (openCards.length >= 2) {
+            //hide card
+        } else {
+        openCards.push(card);    
         card.classList.add('open', 'show');
+        }
     });
 });
 
