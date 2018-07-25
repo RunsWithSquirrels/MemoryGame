@@ -78,6 +78,8 @@ allCards.forEach(function(card) {
                     openCards(1).classList.add('match');
                     openCards(1).classList.add('open');
                     openCards(1).classList.add('show');
+                    
+                    openCards = [];
                 } else {
                     setTimeout(function() {
                         openCards.forEach(function(card) {
