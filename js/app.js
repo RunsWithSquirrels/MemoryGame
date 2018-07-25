@@ -3,6 +3,19 @@
  */
 
 
+ var cards = ['fa-diamond', 'fa-diamond',
+              'fa-paper-plane-o', 'fa-paper-plane-o',
+              'fa-anchor', 'fa-anchor',
+              'fa-bolt', 'fa-bolt',
+              'fa-cube', 'fa-cube',
+              'fa-leaf', 'fa-leaf',
+              'fa-bicycle', 'fa-bicycle',
+              'fa-bomb', 'fa-bomb'
+            ];
+function generateCard(card) {            
+    return '<li class="card"><i class="fa ${card}"></i></li>';
+};
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -36,7 +49,13 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-var allCards = document.querySelectorAll('.card');
+function initGame() {
+
+}
+
+//initGame();
+
+ var allCards = document.querySelectorAll('.card');
 var openCards = [];
 
 allCards.forEach(function(card) {
@@ -46,6 +65,10 @@ allCards.forEach(function(card) {
             openCards.push(card);
             card.classList.add('open', 'show');
             
+            //Check if cards match
+
+
+            //For when cards don't match
             if (openCards.length == 2) {
                 setTimeout(function() {
                     openCards.forEach(function(card) {
