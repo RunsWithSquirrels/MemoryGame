@@ -130,11 +130,4 @@ reset.addEventListener('click', function (event) {
  * Timer: When the player starts a game, a displayed timer should also start. Once the player wins the game, the timer stops.
  */
 
- 
- /*
- * Move Counter: Game displays the current number of moves a user has made.
- */
-
-
-
  // Special thanks to Mike Wales for his help with my code!
