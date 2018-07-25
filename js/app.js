@@ -66,6 +66,7 @@ var allCards = document.querySelectorAll('.card');
 var openCards = [];
 var moves = 0;
 var moveCounter = document.querySelector('.moves');
+//var intervalID = window.setInterval(initGame, 1000);
 
 allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
