@@ -147,11 +147,18 @@ allCards.forEach(function(card) {
                 moves += 1;
                 moveCounter.innerText = moves;
                 starCheck();
-                };
             }
         }
     });
 });
+
+function endGame() {
+    if (allCards.classList.contains('match')) {
+        stopTimer();
+        enterGameStats();
+        openModal();
+    };
+};
     
 function removeStar() {
     var stars = document.querySelectorAll('.stars li');
