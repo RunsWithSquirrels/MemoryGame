@@ -152,14 +152,42 @@ allCards.forEach(function(card) {
     });
 });
 
+function openModal() {
+    var popup = document.querySelector('.modal');
+    popup.classList.toggle('disappear');
+};
+
+function enterGameStats() {
+    var timeModal = document.querySelector('.game-clock');
+    var gameTime = document.querySelector('.gameTimer').innerHTML;
+    var gameMoves = document.querySelector('.game_score');
+    var gameStars = document.querySelector('.game_stars');
+    var starData = needStars();
+
+    timeModal.innerHTML = `Time = ${gameTime}`;
+    gameMoves.innerHTML = `Moves = ${moves}`;
+    gameStars.innerHTL = `Stars = ${stars}`;
+};
+
+function needStars() {
+    var stars = document.querySelector('.stars li');
+    starsCount = 0;
+    for (star of stars) {
+        if (star.style.display !== 'none') {
+            starCount++;
+        };
+    };
+    return starCount;
+};
+
 function endGame() {
     if (allCards.classList.contains('match')) {
         stopTimer();
-        enterGameStats();
         openModal();
+        enterGameStats();
     };
 };
-    
+   
 function removeStar() {
     var stars = document.querySelectorAll('.stars li');
     for (star of stars) {
@@ -181,6 +209,19 @@ function stopTimer() {
     clearInterval(timerID);
 };
 
+document.querySelector('.cancel').addEventListener('click', function(event) {
+    openModal();
+});
+
+document.querySelector('.replay').addEventListener('click', function(event) {
+    openModal();
+    document.location.reload();
+});
+
+document.querySelector('.close').addEventListener('click', function(event) {
+    openModal();
+});
+
  /* 
  * Congratulations Popup: When a user wins the game a modal appears to congratulate the player & ask if they want to play again. It should also tell the user how much
  * time it took to win the game, & the star rating.
@@ -193,4 +234,4 @@ function stopTimer() {
  
 
 
- // Special thanks to Mike Wales for his help with my code, as well as to Matthew Crawford (https://matthewcranford.com/memory-game-walkthrough-part-5-moves-stars/).
+ // Special thanks to Mike Wales for his help with my code, as well as to Matthew Crawford (https://matthewcranford.com/memory-game-walkthrough/).
