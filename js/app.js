@@ -113,7 +113,7 @@ allCards.forEach(function(card) {
                 }
                 moves += 1;
                 moveCounter.innerText = moves;
-                ScoreCheck();
+                starCheck();
             }
         }
     });
@@ -129,7 +129,7 @@ function removeStar() {
     }
 };
 
-function ScoreCheck() {
+function starCheck() {
     if (moves === 12 || moves ===22) {
         removeStar();
     };
