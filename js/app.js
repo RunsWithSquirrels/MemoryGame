@@ -79,12 +79,10 @@ reset.addEventListener('click', function (event) {
     document.location.reload();
 });
 
-
 var allCards = document.querySelectorAll('.card');
 var openCards = [];
 var moves = 0;
 var moveCounter = document.querySelector('.moves');
-
 
 allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
@@ -115,28 +113,35 @@ allCards.forEach(function(card) {
                 }
                 moves += 1;
                 moveCounter.innerText = moves;
+                ScoreCheck();
             }
         }
     });
 });
 
+function removeStar() {
+    var stars = document.querySelectorAll('.stars li');
+    for (star of stars) {
+        if (star.style.display !== 'none') {
+            star.style.display = 'none';
+            break;
+        }
+    }
+};
+
+function ScoreCheck() {
+    if (moves === 12 || moves ===22) {
+        removeStar();
+    };
+};
+
  /* 
  * Congratulations Popup: When a user wins the game a modal appears to congratulate the player & ask if they want to play again. It should also tell the user how much
  * time it took to win the game, & the star rating.
- */
-
-
- 
- /* 
- * Star Rating: The game displays a star rating (from 1 to at least 3) that reflects the player's performance. At the beginning of a game,
- * it should display at least 3 stars. After some number of moves, it should change to a lower star rating. After a few more moves,
- * it should change to an even lower star rating (down to 1). The number of moves needed to change the rating is up to you, but it should
- * happen at SOME time.
- */
-
+ */ 
  
  /*
  * Timer: When the player starts a game, a displayed timer should also start. Once the player wins the game, the timer stops.
  */
 
- // Special thanks to Mike Wales for his help with my code!
+ // Special thanks to Mike Wales for his help with my code, as well as to Matthew Crawford (https://matthewcranford.com/memory-game-walkthrough-part-5-moves-stars/).
