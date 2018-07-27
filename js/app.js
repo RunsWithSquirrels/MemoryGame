@@ -54,9 +54,7 @@ function initGame() {
     var cardHTML = shuffle(cards).map(function(card) {
         return generateCard(card);
     });
-
     moves = 0;
-
     deck.innerHTML = cardHTML.join('');
 };
 
@@ -72,6 +70,15 @@ initGame();
 * 
 *  var intervalID = window.setInterval(initGame, 1000);
 */
+
+/* 
+ * Restart Button: A restart button allows the player to reset the game board, the timer, & the star rating.
+ */
+var reset = document.querySelector('.restart');
+reset.addEventListener('click', function (event) {
+    document.location.reload();
+});
+
 
 var allCards = document.querySelectorAll('.card');
 var openCards = [];
@@ -119,17 +126,7 @@ allCards.forEach(function(card) {
  */
 
 
- /* 
- * Restart Button: A restart button allows the player to reset the game board, the timer, & the star rating.
- */
-const reset = document.querySelector('.restart');
-reset.addEventListener('click', function (event) {
-    event.preventDefault();
-    // Need to reset the timer back to 0
-    // Need to reset the star rating back to 3
-    shuffle; // Need to shuffle/reset the game board
-});
-
+ 
  /* 
  * Star Rating: The game displays a star rating (from 1 to at least 3) that reflects the player's performance. At the beginning of a game,
  * it should display at least 3 stars. After some number of moves, it should change to a lower star rating. After a few more moves,
