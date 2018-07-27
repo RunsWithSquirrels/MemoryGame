@@ -56,9 +56,14 @@ function showTimer() {
     var minutes = Math.floor(time / 60);
     var seconds = time % 60;
     if (seconds < 10) {
-        timer.innerHTML = `${minutes}:0${seconds}`;
+        timer.innerHTML = `0${minutes}:0${seconds}`;
     } else {
-        timer.innerHTML = `${minutes}:${seconds}`;
+        timer.innerHTML = `0${minutes}:${seconds}`;
+    };
+    if (minutes < 10) {
+        timer.innetHTML = `0${minutes}:${seconds}`;
+    } else {
+        timer.innerHTM = `${minutes}:${seconds}`;
     };
 };
 
@@ -80,10 +85,13 @@ function initGame() {
     moves = 0;
     deck.innerHTML = cardHTML.join('');
     
-    deck.addEventListener('click', function (e) {  
-            startTimer(); 
+    deck.addEventListener('click', function(e) {  
+        if(timerOff) {
+            startTimer();
+            timerOff = false; 
+            };
     });
-
+    
 };
 
 initGame();
@@ -105,6 +113,7 @@ var time = 0;
 var timerID;
 var deck = document.querySelector('.deck');
 var timer = document.querySelector('gameTimer');
+var timerOff = true;
 
 
 
@@ -138,12 +147,12 @@ allCards.forEach(function(card) {
                 moves += 1;
                 moveCounter.innerText = moves;
                 starCheck();
+                };
             }
         }
     });
 });
-
-
+    
 function removeStar() {
     var stars = document.querySelectorAll('.stars li');
     for (star of stars) {
@@ -160,10 +169,10 @@ function starCheck() {
     };
 };
 
+
 function stopTimer() {
     clearInterval(timerID);
 };
-
 
  /* 
  * Congratulations Popup: When a user wins the game a modal appears to congratulate the player & ask if they want to play again. It should also tell the user how much
