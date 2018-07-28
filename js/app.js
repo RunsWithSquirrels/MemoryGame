@@ -198,7 +198,7 @@ document.querySelector('.close').addEventListener('click', function (event) {
     openModal();
 });
 
- //Remove starts during the game
+ //Remove stars during the game
 function removeStar() {
     var stars = document.querySelectorAll('.stars li');
     for (star of stars) {
