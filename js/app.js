@@ -75,6 +75,10 @@ function startTimer() {
     }, 1000);
 };
 
+function stopTimer() {
+    clearInterval(timerID);
+};
+
 
 function initGame() {
     var deck = document.querySelector('.deck');
@@ -97,14 +101,13 @@ function initGame() {
 initGame();
 
 
-/* 
- * Restart Button: A restart button allows the player to reset the game board, the timer, & the star rating.
- */
+//Code for restart
 var reset = document.querySelector('.restart');
 reset.addEventListener('click', function (event) {
     document.location.reload();
 });
 
+//Global variables
 var allCards = document.querySelectorAll('.card');
 var openCards = [];
 var moves = 0;
@@ -152,6 +155,7 @@ allCards.forEach(function(card) {
     });
 });
 
+// Code for Modal
 function openModal() {
     var popup = document.querySelector('.modal');
     popup.classList.toggle('disappear');
@@ -166,7 +170,7 @@ function enterGameStats() {
 
     timeModal.innerHTML = `Time = ${gameTime}`;
     gameMoves.innerHTML = `Moves = ${moves}`;
-    gameStars.innerHTL = `Stars = ${stars}`;
+    gameStars.innerHTL = `Stars = ${starData}`;
 };
 
 function needStars() {
@@ -177,17 +181,24 @@ function needStars() {
             starCount++;
         };
     };
+    console.log(starCount);
     return starCount;
 };
 
-function endGame() {
-    if (allCards.classList.contains('match')) {
-        stopTimer();
-        openModal();
-        enterGameStats();
-    };
-};
-   
+document.querySelector('.cancel').addEventListener('click', function (event) {
+    openModal();
+});
+
+document.querySelector('.replay').addEventListener('click', function (event) {
+    openModal();
+    document.location.reload();
+});
+
+document.querySelector('.close').addEventListener('click', function (event) {
+    openModal();
+});
+
+ //Remove starts during the game
 function removeStar() {
     var stars = document.querySelectorAll('.stars li');
     for (star of stars) {
@@ -204,34 +215,14 @@ function starCheck() {
     };
 };
 
+//Ending game
 
-function stopTimer() {
-    clearInterval(timerID);
+function endGame() {
+    if (allCards.classList.contains('match')) {
+        stopTimer();
+        enterGameStats();
+        openModal();
+    };
 };
-
-document.querySelector('.cancel').addEventListener('click', function(event) {
-    openModal();
-});
-
-document.querySelector('.replay').addEventListener('click', function(event) {
-    openModal();
-    document.location.reload();
-});
-
-document.querySelector('.close').addEventListener('click', function(event) {
-    openModal();
-});
-
- /* 
- * Congratulations Popup: When a user wins the game a modal appears to congratulate the player & ask if they want to play again. It should also tell the user how much
- * time it took to win the game, & the star rating.
- */ 
  
- /*
- * Timer: When the player starts a game, a displayed timer should also start. Once the player wins the game, the timer stops.
- */
-
- 
-
-
  // Special thanks to Mike Wales for his help with my code, as well as to Matthew Crawford (https://matthewcranford.com/memory-game-walkthrough/).
