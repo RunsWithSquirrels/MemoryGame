@@ -13,7 +13,7 @@
               'fa-bicycle', 'fa-bicycle',
               'fa-bomb', 'fa-bomb'
             ];
-function generateCard(card) {            
+function cardIcons(card) {            
     return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 };
 
@@ -82,14 +82,14 @@ function stopTimer() {
 };
 
 //Start game
-function initGame() {
+function startGame() {
     var deck = document.querySelector('.deck');
-    var cardHTML = shuffle(cards).map(function(card) {
-        return generateCard(card);
+    var cardInfo = shuffle(cards).map(function(card) {
+        return cardIcons(card);
     });
 
     moves = 0;
-    deck.innerHTML = cardHTML.join('');
+    deck.innerHTML = cardInfo.join('');
     
     deck.addEventListener('click', function(e) {  
         if(timerOff) {
@@ -100,7 +100,7 @@ function initGame() {
     
 };
 
-initGame();
+startGame();
 
 
 //Code for restart
@@ -110,8 +110,8 @@ reset.addEventListener('click', function (event) {
 });
 
 //Global variables
-var allCards = document.querySelectorAll('.card');
-var openCards = [];
+var everyCard = document.querySelectorAll('.card');
+var cardShow = [];
 var moves = 0;
 var moveCounter = document.querySelector('.moves');
 var time = 0;
@@ -122,31 +122,31 @@ var timerOff = true;
 
 
 //Game code
-allCards.forEach(function(card) {
+everyCard.forEach(function(card) {
     card.addEventListener('click', function(e) {
  
         if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {
-            openCards.push(card);
+            cardShow.push(card);
             card.classList.add('open', 'show');
             
-            if (openCards.length == 2) {
-                if(openCards[0].dataset.card == openCards[1].dataset.card) {
-                    openCards[0].classList.add('match');
-                    openCards[0].classList.add('open');
-                    openCards[0].classList.add('show');
+            if (cardShow.length == 2) {
+                if(cardShow[0].dataset.card == cardShow[1].dataset.card) {
+                    cardShow[0].classList.add('match');
+                    cardShow[0].classList.add('open');
+                    cardShow[0].classList.add('show');
                     
-                    openCards[1].classList.add('match');
-                    openCards[1].classList.add('open');
-                    openCards[1].classList.add('show');
+                    cardShow[1].classList.add('match');
+                    cardShow[1].classList.add('open');
+                    cardShow[1].classList.add('show');
                     
-                    openCards = [];
+                    cardShow = [];
                 } else {
                     setTimeout(function() {
-                        openCards.forEach(function(card) {
+                        cardShow.forEach(function(card) {
                             card.classList.remove('open', 'show');
                         });
                 
-                        openCards = [];
+                        cardShow = [];
                     }, 1000);
                 }
                 moves += 1;
@@ -190,12 +190,10 @@ function needStars() {
 document.querySelector('.cancel').addEventListener('click', function (event) {
     openModal();
 });
-
 document.querySelector('.replay').addEventListener('click', function (event) {
     openModal();
     document.location.reload();
 });
-
 document.querySelector('.close').addEventListener('click', function (event) {
     openModal();
 });
