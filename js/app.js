@@ -121,7 +121,7 @@ var timer = document.querySelector('gameTimer');
 var timerOff = true;
 
 
-
+//Game code
 allCards.forEach(function(card) {
     card.addEventListener('click', function(e) {
  
