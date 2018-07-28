@@ -50,7 +50,9 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-function showTimer() {
+
+//Game timer
+ function showTimer() {
     var timer = document.querySelector('.gameTimer');
     timer.innerHTML = time;
     var minutes = Math.floor(time / 60);
@@ -79,7 +81,7 @@ function stopTimer() {
     clearInterval(timerID);
 };
 
-
+//Start game
 function initGame() {
     var deck = document.querySelector('.deck');
     var cardHTML = shuffle(cards).map(function(card) {
