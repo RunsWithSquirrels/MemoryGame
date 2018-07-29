@@ -114,14 +114,9 @@ h1 {
 
 /* Modal Styles */
 .modal {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.438);
-
+    border: 1px solid black;
 }
+
 .modal_content {
     position: relative;
     width: 400px;

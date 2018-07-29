@@ -78,7 +78,10 @@ function startTimer() {
 };
 
 function stopTimer() {
-    clearInterval(timerID);
+    if(everyCard.classList.contains('match')) {
+        clearInterval(timerID);
+        timerOff = true;
+    };
 };
 
 //Start game
@@ -101,6 +104,56 @@ function startGame() {
 };
 
 startGame();
+
+//Ending game
+function endGame() {
+    stopTimer();
+    enterGameStats();
+    showModal();
+};
+
+// Code for Modal
+function showModal() {
+    var popup = document.querySelector('.modal');
+    popup.classList.toggle('disappear');
+};
+
+function needStars() {
+    var stars = document.querySelectorAll('.stars li');
+    starCount = 0;
+    for (star of stars) {
+        if (star.style.display !== 'none') {
+            starCount++;
+        };
+    };
+    console.log(starCount);
+    return starCount;
+};
+
+function enterGameStats() {
+    var timeModal = document.querySelector('.game_clock');
+    var gameTime = document.querySelector('.gameTimer').innerHTML;
+    var gameMoves = document.querySelector('.game_score');
+    var gameStars = document.querySelector('.game_stars');
+    var starData = needStars();
+
+    timeModal.innerHTML = `Time = ${gameTime}`;
+    gameMoves.innerHTML = `Moves = ${moves}`;
+    gameStars.innerHTL = `Stars = ${starData}`;
+};
+
+
+document.querySelector('.cancel').addEventListener('click', function (event) {
+    showModal();
+});
+document.querySelector('.replay').addEventListener('click', function (event) {
+    showModal();
+    document.location.reload();
+});
+document.querySelector('.close').addEventListener('click', function (event) {
+    showModal();
+});
+
 
 
 //Code for restart
@@ -129,7 +182,7 @@ everyCard.forEach(function(card) {
             cardShow.push(card);
             card.classList.add('open', 'show');
             
-            if (cardShow.length == 2) {
+            if (cardShow.length === 2) {
                 if(cardShow[0].dataset.card == cardShow[1].dataset.card) {
                     cardShow[0].classList.add('match');
                     cardShow[0].classList.add('open');
@@ -148,55 +201,20 @@ everyCard.forEach(function(card) {
                 
                         cardShow = [];
                     }, 1000);
-                }
+                };
                 moves += 1;
                 moveCounter.innerText = moves;
                 starCheck();
-            }
-        }
-    });
-});
 
-// Code for Modal
-function openModal() {
-    var popup = document.querySelector('.modal');
-    popup.classList.toggle('disappear');
-};
-
-function enterGameStats() {
-    var timeModal = document.querySelector('.game-clock');
-    var gameTime = document.querySelector('.gameTimer').innerHTML;
-    var gameMoves = document.querySelector('.game_score');
-    var gameStars = document.querySelector('.game_stars');
-    var starData = needStars();
-
-    timeModal.innerHTML = `Time = ${gameTime}`;
-    gameMoves.innerHTML = `Moves = ${moves}`;
-    gameStars.innerHTL = `Stars = ${starData}`;
-};
-
-function needStars() {
-    var stars = document.querySelector('.stars li');
-    starsCount = 0;
-    for (star of stars) {
-        if (star.style.display !== 'none') {
-            starCount++;
+                if (everyCard.classList.contains('match')) {
+                    endGame();
+                };
+            };
         };
-    };
-    console.log(starCount);
-    return starCount;
-};
+    });    
+});
 
-document.querySelector('.cancel').addEventListener('click', function (event) {
-    openModal();
-});
-document.querySelector('.replay').addEventListener('click', function (event) {
-    openModal();
-    document.location.reload();
-});
-document.querySelector('.close').addEventListener('click', function (event) {
-    openModal();
-});
+
 
  //Remove stars during the game
 function removeStar() {
@@ -215,14 +233,5 @@ function starCheck() {
     };
 };
 
-//Ending game
-
-function endGame() {
-    if (allCards.classList.contains('match')) {
-        stopTimer();
-        enterGameStats();
-        openModal();
-    };
-};
  
  // Special thanks to Mike Wales for his help with my code, as well as to Matthew Crawford (https://matthewcranford.com/memory-game-walkthrough/).
