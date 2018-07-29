@@ -113,20 +113,17 @@ h1 {
 }
 
 /* Modal Styles */
-.modal {
-    border: 1px solid black;
-}
-
 .modal_content {
-    position: relative;
+    position: absolute;
     width: 400px;
     top: 50%;
     left: 50%;
     background: #ffffff;
     transform: translate(-50%, -70%);
+    border: 2px solid black;
 }
 
-.title {
+.modal_title {
     display: flex;
     justify-content: space-between;
     align-items: center;
