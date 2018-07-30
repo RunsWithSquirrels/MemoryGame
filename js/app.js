@@ -17,6 +17,7 @@ function cardIcons(card) {
     return `<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>`;
 };
 
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -72,6 +73,7 @@ function startTimer() {
     }, 1000);
 };
 
+
 //Start game
 function startGame() {
     let deck = document.querySelector('.deck');
@@ -91,6 +93,7 @@ function startGame() {
 };
 
 startGame();
+
 
 //Global variables
 let everyCard = document.querySelectorAll('.card');
@@ -198,7 +201,6 @@ function enterGameStats() {
 };
 
 
-
 //Ending game
 function stopTimer() {
     clearInterval(timerID);
@@ -218,7 +220,6 @@ function seeMatched() {
     endGame();
     };
 };
-
 
 
  //Remove stars during the game
