@@ -59,7 +59,7 @@ function shuffle(array) {
     var minutes = Math.floor(time / 60);
     var seconds = time % 60;
     if (seconds < 10) {
-        timer.innerHTML = `${minutes}:0${seconds}`;
+        timer.innerHTML = `0${minutes}:0${seconds}`;
     } else {
         timer.innerHTML = `${minutes}:${seconds}`;
     };
