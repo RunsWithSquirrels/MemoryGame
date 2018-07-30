@@ -240,4 +240,4 @@ function starCheck() {
 };
 
  
- // Special thanks to Mike Wales for his help with my code, as well as to Matthew Crawford (https://matthewcranford.com/memory-game-walkthrough/).
+ // Special thanks to Mike Wales for his help with my code, as well as to Matthew Cranford's "Journey to Greatness" blog (https://matthewcranford.com/memory-game-walkthrough/).
