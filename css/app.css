@@ -112,7 +112,10 @@ h1 {
     cursor: pointer;
 }
 
-/* Modal Styles */
+/* 
+*Modal Styles 
+*/
+
 .modal_content {
     position: absolute;
     width: 400px;
