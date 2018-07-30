@@ -182,7 +182,6 @@ function needStars() {
             starCount++;
         };
     };
-    console.log(starCount);
     return starCount;
 };
 
