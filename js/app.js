@@ -74,12 +74,8 @@ function startTimer() {
 };
 
 function stopTimer() {
-    if(everyCard.classList.contains('match')) {
-        clearInterval(timerID);
-        timerOff = true;
-    };
+    clearInterval(timerID);
 };
-
 
 //Start game
 function startGame() {
@@ -95,9 +91,8 @@ function startGame() {
         if(timerOff) {
             startTimer();
             timerOff = false; 
-            };
+            };  
     });
-    
 };
 
 startGame();
@@ -112,58 +107,9 @@ var timerID;
 var deck = document.querySelector('.deck');
 var timer = document.querySelector('gameTimer');
 var timerOff = true;
-
-
-
-//Code for Modal
-function showModal() {
-    var popup = document.querySelector('.modal');
-    popup.classList.toggle('disappear');
-};
-
-function needStars() {
-    var stars = document.querySelectorAll('.stars li');
-    starCount = 0;
-    for (star of stars) {
-        if (star.style.display !== 'none') {
-            starCount++;
-        };
-    };
-    console.log(starCount);
-    return starCount;
-};
-
-function enterGameStats() {
-    var timeModal = document.querySelector('.game_clock');
-    var gameTime = document.querySelector('.gameTimer').innerHTML;
-    var gameMoves = document.querySelector('.game_moves');
-    var gameStars = document.querySelector('.game_stars');
-    var starData = needStars();
-
-    timeModal.innerHTML = `Time = ${gameTime}`;
-    gameMoves.innerHTML = `Moves = ${moves}`;
-    gameStars.innerHTML = `Stars = ${starData}`;
-};
-
-
-document.querySelector('.cancel').addEventListener('click', function (event) {
-    showModal();
-});
-document.querySelector('.replay').addEventListener('click', function (event) {
-    showModal();
-    document.location.reload();
-});
-document.querySelector('.close').addEventListener('click', function (event) {
-    showModal();
-});
-
-
-//Ending game
-function endGame() {
-    stopTimer();
-    enterGameStats();
-    showModal();
-};
+var matchCards = 0;
+const totalMatchPairs = 8;
+var modal = document.querySelector('.modal');
 
 
 //Code for restart
@@ -183,7 +129,7 @@ everyCard.forEach(function(card) {
 
             
             if (cardShow.length === 2) {
-                if(cardShow[0].dataset.card == cardShow[1].dataset.card) {
+                if(cardShow[0].dataset.card === cardShow[1].dataset.card) {
                     cardShow[0].classList.add('match');
                     cardShow[0].classList.add('open');
                     cardShow[0].classList.add('show');
@@ -192,6 +138,7 @@ everyCard.forEach(function(card) {
                     cardShow[1].classList.add('open');
                     cardShow[1].classList.add('show');
                     
+                    seeMatched();
                     cardShow = [];
                 } else {
                     setTimeout(function() {
@@ -202,6 +149,7 @@ everyCard.forEach(function(card) {
                         cardShow = [];
                     }, 1000);
                 };
+
                 moves += 1;
                 moveCounter.innerText = moves;
                 starCheck();
@@ -210,9 +158,69 @@ everyCard.forEach(function(card) {
     });
 });
 
-if (everyCard.classList.contains('match')) {
+closeModal();
+
+//Code for Modal
+function showModal() {
+    var popup = document.querySelector('.modal');
+    popup.classList.toggle('disappear');
+};
+
+function needStars() {
+    var stars = document.querySelectorAll('.stars li');
+    var starCount = 0;
+    for (star of stars) {
+        if (star.style.display !== 'none') {
+            starCount++;
+        };
+    };
+    console.log(starCount);
+    return starCount;
+};
+
+function enterGameStats() {
+    var timeModal = document.querySelector('.game_clock');
+    var gameTime = document.querySelector('.gameTimer').innerHTML;
+    var gameMoves = document.querySelector('.game_moves');
+    var gameStars = document.querySelector('.game_stars');
+    var starData = needStars();
+
+    timeModal.innerHTML = `Time = ${gameTime}`;
+    gameStars.innerHTML = `Stars = ${starData}`;
+    gameMoves.innerHTML = `Moves = ${moves}`;
+};
+
+function closeModal() {
+    showModal().classList.add('disppear');
+};
+
+function replayGame() {
+    document.location.reload();
+};
+
+
+document.querySelector('.cancel').addEventListener('click', closeModal());
+document.querySelector('.replay').addEventListener('click', replayGame());
+document.querySelector('.close').addEventListener('click', closeModal());
+
+
+//Ending game
+function endGame() {
+    stopTimer();
+    enterGameStats();
+    showModal();
+};
+
+function seeMatched() {
+    if (cardShow[0].dataset.card === cardShow[1].dataset.card) {
+    matchCards++;
+};
+    if (matchCards === totalMatchPairs) {
     endGame();
-};    
+    };
+};
+
+
 
  //Remove stars during the game
 function removeStar() {
