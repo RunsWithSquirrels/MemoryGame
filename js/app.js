@@ -4,7 +4,7 @@
  */
 
 
- var cards = ['fa-diamond', 'fa-diamond',
+ let cards = ['fa-diamond', 'fa-diamond',
               'fa-paper-plane-o', 'fa-paper-plane-o',
               'fa-anchor', 'fa-anchor',
               'fa-bolt', 'fa-bolt',
@@ -26,7 +26,7 @@ function cardIcons(card) {
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -54,10 +54,10 @@ function shuffle(array) {
 
 //Game timer
  function showTimer() {
-    var timer = document.querySelector('.gameTimer');
+    let timer = document.querySelector('.gameTimer');
     timer.innerHTML = time;
-    var minutes = Math.floor(time / 60);
-    var seconds = time % 60;
+    let minutes = Math.floor(time / 60);
+    let seconds = time % 60;
     if (seconds < 10) {
         timer.innerHTML = `0${minutes}:0${seconds}`;
     } else {
@@ -74,8 +74,8 @@ function startTimer() {
 
 //Start game
 function startGame() {
-    var deck = document.querySelector('.deck');
-    var cardInfo = shuffle(cards).map(function(card) {
+    let deck = document.querySelector('.deck');
+    let cardInfo = shuffle(cards).map(function(card) {
         return cardIcons(card);
     });
 
@@ -93,21 +93,21 @@ function startGame() {
 startGame();
 
 //Global variables
-var everyCard = document.querySelectorAll('.card');
-var cardShow = [];
-var moves = 0;
-var moveCounter = document.querySelector('.moves');
-var time = 0;
-var timerID;
-var deck = document.querySelector('.deck');
-var timer = document.querySelector('gameTimer');
-var timerOff = true;
-var matchCards = 0;
+let everyCard = document.querySelectorAll('.card');
+let cardShow = [];
+let moves = 0;
+let moveCounter = document.querySelector('.moves');
+let time = 0;
+let timerID;
+let deck = document.querySelector('.deck');
+let timer = document.querySelector('gameTimer');
+let timerOff = true;
+let matchCards = 0;
 const totalMatchPairs = 8;
 
 
 //Code for restart
-var reset = document.querySelector('.restart');
+let reset = document.querySelector('.restart');
 reset.addEventListener('click', function (event) {
     document.location.reload();
 });
@@ -170,13 +170,13 @@ document.querySelector('.close').addEventListener('click', function(e) {
 
 
 function showModal() {
-    var modal = document.querySelector('.modal');
+    let modal = document.querySelector('.modal');
     modal.classList.toggle('disappear');
 };
 
 function needStars() {
-    var stars = document.querySelectorAll('.stars li');
-    var starCount = 0;
+    let stars = document.querySelectorAll('.stars li');
+    let starCount = 0;
     for (star of stars) {
         if (star.style.display !== 'none') {
             starCount++;
@@ -186,11 +186,11 @@ function needStars() {
 };
 
 function enterGameStats() {
-    var timeModal = document.querySelector('.game_clock');
-    var gameTime = document.querySelector('.gameTimer').innerHTML;
-    var gameMoves = document.querySelector('.game_moves');
-    var gameStars = document.querySelector('.game_stars');
-    var starData = needStars();
+    let timeModal = document.querySelector('.game_clock');
+    let gameTime = document.querySelector('.gameTimer').innerHTML;
+    let gameMoves = document.querySelector('.game_moves');
+    let gameStars = document.querySelector('.game_stars');
+    let starData = needStars();
 
     timeModal.innerHTML = `Time = ${gameTime}`;
     gameStars.innerHTML = `Stars = ${starData}`;
@@ -223,7 +223,7 @@ function seeMatched() {
 
  //Remove stars during the game
 function removeStar() {
-    var stars = document.querySelectorAll('.stars li');
+    let stars = document.querySelectorAll('.stars li');
     for (star of stars) {
         if (star.style.display !== 'none') {
             star.style.display = 'none';
