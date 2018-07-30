@@ -73,10 +73,6 @@ function startTimer() {
     }, 1000);
 };
 
-function stopTimer() {
-    clearInterval(timerID);
-};
-
 //Start game
 function startGame() {
     var deck = document.querySelector('.deck');
@@ -109,7 +105,6 @@ var timer = document.querySelector('gameTimer');
 var timerOff = true;
 var matchCards = 0;
 const totalMatchPairs = 8;
-var modal = document.querySelector('.modal');
 
 
 //Code for restart
@@ -158,12 +153,26 @@ everyCard.forEach(function(card) {
     });
 });
 
-closeModal();
+showModal();
+
 
 //Code for Modal
+document.querySelector('.cancel').addEventListener('click', function(e) {
+    showModal();
+});
+
+document.querySelector('.replay').addEventListener('click', function(e) {
+    document.location.reload();
+});
+
+document.querySelector('.close').addEventListener('click', function(e) {
+    showModal();
+});
+
+
 function showModal() {
-    var popup = document.querySelector('.modal');
-    popup.classList.toggle('disappear');
+    var modal = document.querySelector('.modal');
+    modal.classList.toggle('disappear');
 };
 
 function needStars() {
@@ -190,18 +199,6 @@ function enterGameStats() {
     gameMoves.innerHTML = `Moves = ${moves}`;
 };
 
-function closeModal() {
-    showModal().classList.add('disppear');
-};
-
-function replayGame() {
-    document.location.reload();
-};
-
-
-document.querySelector('.cancel').addEventListener('click', closeModal());
-document.querySelector('.replay').addEventListener('click', replayGame());
-document.querySelector('.close').addEventListener('click', closeModal());
 
 
 //Ending game
@@ -209,6 +206,10 @@ function endGame() {
     stopTimer();
     enterGameStats();
     showModal();
+};
+
+function stopTimer() {
+    clearInterval(timerID);
 };
 
 function seeMatched() {
