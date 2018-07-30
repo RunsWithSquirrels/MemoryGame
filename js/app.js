@@ -106,7 +106,7 @@ let deck = document.querySelector('.deck');
 let timer = document.querySelector('gameTimer');
 let timerOff = true;
 let matchCards = 0;
-const totalMatchPairs = 8;
+const TOTAL_MATCH_PAIRS = 8;
 
 
 //Code for restart
@@ -216,7 +216,7 @@ function seeMatched() {
     if (cardShow[0].dataset.card === cardShow[1].dataset.card) {
     matchCards++;
 };
-    if (matchCards === totalMatchPairs) {
+    if (matchCards === TOTAL_MATCH_PAIRS) {
     endGame();
     };
 };
