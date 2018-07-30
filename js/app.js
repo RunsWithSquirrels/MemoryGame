@@ -81,7 +81,7 @@ function startGame() {
         return cardIcons(card);
     });
 
-    moves = 0;
+    let moves = 0;
     deck.innerHTML = cardInfo.join('');
     
     deck.addEventListener('click', function(e) {  
