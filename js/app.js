@@ -66,8 +66,7 @@ function shuffle(array) {
 };
 
 function startTimer() {
-    time = 0;
-    let timerID = setInterval(() => {
+    timerID = setInterval(() => {
         time++;
         showTimer();
     }, 1000);
@@ -202,14 +201,14 @@ function enterGameStats() {
 
 
 //Ending game
-function endGame() {
-    stopTimer();
-    enterGameStats();
-    showModal();
-};
-
 function stopTimer() {
     clearInterval(timerID);
+};
+
+function endGame() {
+    enterGameStats();
+    showModal();
+    stopTimer();
 };
 
 function seeMatched() {
