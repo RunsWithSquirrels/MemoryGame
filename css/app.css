@@ -137,6 +137,13 @@ h1 {
     cursor: pointer;
 }
 
+.congrats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
 .game_stats {
     display: flex;
     flex-direction: column;
